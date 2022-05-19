@@ -34,4 +34,11 @@ def format_output(*required_keys):
 
 
 def add_method_to_instance(klass):
-    pass
+    def outer_wrapper(func):
+        def inner_wrapper(*args, **kwargs):
+            return func()
+
+        setattr(klass, func.__name__, inner_wrapper)
+        return inner_wrapper
+
+    return outer_wrapper
