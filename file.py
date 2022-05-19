@@ -24,7 +24,7 @@ def sums_of_str_elements_are_equal(func):
         if sum1 == sum2:
             return f'{sum1} == {sum2}'
         else:
-            return f'{str(sum1)} != {str(sum2)}'
+            return f'{sum1} != {sum2}'
 
     return wrapper
 
