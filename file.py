@@ -6,8 +6,8 @@ def greeter(func):
 
  
 def sums_of_str_elements_are_equal(func):
-    def wrapper(*args):
-        numbers = func(*args).split(' ')
+    def wrapper(self):
+        numbers = func(self).split(' ')
         list_of_nums = []
 
         for number in numbers:
@@ -22,11 +22,11 @@ def sums_of_str_elements_are_equal(func):
         sum2 = sum(list_of_nums[1])
 
         if sum1 == sum2:
-            print(f'{sum1} == {sum2}')
+            return f'{sum1} == {sum2}'
         else:
-            print(f'{sum1} != {sum2}')
+            return f'{str(sum1)} != {str(sum2)}'
 
-    return wrapper()
+    return wrapper
 
 
 def format_output(*required_keys):
