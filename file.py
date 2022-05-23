@@ -30,7 +30,26 @@ def sums_of_str_elements_are_equal(func):
 
 
 def format_output(*required_keys):
-    pass
+    def outer_wrapper(func):
+        def inner_wrapper(*args):
+            new_dict = func(*args)
+            output_dict = {}
+
+            for key in required_keys:
+                temp_list = []
+                for x in key.split('__'):
+                    if x in new_dict.keys():
+                        if new_dict[x] == '':
+                            temp_list.append('Empty value')
+                        else:
+                            temp_list.append(new_dict[x])
+                    else:
+                        raise ValueError
+                    output_dict[key] = ' '.join(temp_list)
+
+            return output_dict
+        return inner_wrapper
+    return outer_wrapper
 
 
 def add_method_to_instance(klass):
